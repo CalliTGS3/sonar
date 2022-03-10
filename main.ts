@@ -1,4 +1,10 @@
 function TasteBereichAb () {
+    OLED12864_I2C.showNumber(
+    22,
+    0,
+    EntfernungCMMax,
+    1
+    )
     MesseEntfernung()
     if (Winkel == 0) {
         WinkelServo = 2
@@ -34,6 +40,11 @@ function TasteBereichAb () {
         )
     }
 }
+input.onButtonPressed(Button.A, function () {
+    if (EntfernungCMMax < 400) {
+        EntfernungCMMax += 10
+    }
+})
 function MesseEntfernung () {
     // send pulse
     pins.digitalWritePin(DigitalPin.P0, 0)
@@ -63,6 +74,11 @@ function ErmitteZufaelligesHindernis () {
         EntfernungPixel = 0
     }
 }
+input.onButtonPressed(Button.B, function () {
+    if (EntfernungCMMax > 50) {
+        EntfernungCMMax += -10
+    }
+})
 let Hindernis = 0
 let EntfernungCM = 0
 let Pulsdauer = 0
