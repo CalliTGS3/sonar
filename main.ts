@@ -17,18 +17,18 @@ function TasteBereichAb () {
     }
     pins.servoWritePin(AnalogPin.P2, WinkelServo)
     basic.pause(20)
-    OLED12864_I2C.line(
+    OLED12864_I2C.radius(
     Mittelpunkt_X,
     Mittelpunkt_Y,
-    Math.ceil(Mittelpunkt_X + Strahl * Math.cos((360 - Winkel) * 3.14 / Abtastbereich)),
-    Math.ceil(Mittelpunkt_Y + Strahl * Math.sin((360 - Winkel) * 3.14 / Abtastbereich)),
+    Strahl,
+    Winkel,
     1
     )
-    OLED12864_I2C.line(
+    OLED12864_I2C.radius(
     Mittelpunkt_X,
     Mittelpunkt_Y,
-    Math.ceil(Mittelpunkt_X + Strahl * Math.cos((360 - Winkel) * 3.14 / Abtastbereich)),
-    Math.ceil(Mittelpunkt_Y + Strahl * Math.sin((360 - Winkel) * 3.14 / Abtastbereich)),
+    Strahl,
+    Winkel,
     0
     )
     if (EntfernungPixel > 0) {
@@ -58,7 +58,7 @@ function MesseEntfernung () {
     } else {
         EntfernungCM = 0
     }
-    EntfernungPixel = Strahl * EntfernungCM / EntfernungCMMax
+    EntfernungPixel = Math.ceil(Strahl * EntfernungCM / EntfernungCMMax)
     OLED12864_I2C.showNumber(
     0,
     0,
