@@ -15,7 +15,7 @@ function TasteBereichAb () {
             WinkelServo = Winkel
         }
     }
-    pins.servoWritePin(AnalogPin.P2, WinkelServo)
+    PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, WinkelServo, ServoController)
     basic.pause(20)
     OLED12864_I2C.radius(
     Mittelpunkt_X,
@@ -90,8 +90,17 @@ let Abtastbereich = 0
 let Strahl = 0
 let Mittelpunkt_Y = 0
 let Mittelpunkt_X = 0
+let ServoController = 0
 OLED12864_I2C.init(60)
 OLED12864_I2C.zoom(false)
+ServoController = PCA9685.chipAddress("0x40")
+PCA9685.setServoLimits(
+PCA9685.ServoNum.Servo1,
+6,
+24,
+14,
+64
+)
 Mittelpunkt_X = 64
 Mittelpunkt_Y = 64
 Strahl = 62

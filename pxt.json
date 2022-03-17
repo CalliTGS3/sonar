@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "OLED12864_I2C": "github:callitgs3/oled12864_i2c#1d907d569093819fb6f258e803414babeb771a6d"
+        "OLED12864_I2C": "github:callitgs3/oled12864_i2c#1d907d569093819fb6f258e803414babeb771a6d",
+        "pxt-pca9685": "github:jdarling/pxt-pca9685#v0.0.5"
     },
     "files": [
         "main.blocks",
