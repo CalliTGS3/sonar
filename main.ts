@@ -6,25 +6,17 @@ function TasteBereichAb () {
     1
     )
     MesseEntfernung()
-    if (Winkel == 0) {
-        WinkelServo = 2
-    } else {
-        if (Winkel == 180) {
-            WinkelServo = 178
-        } else {
-            WinkelServo = Winkel
-        }
-    }
+    WinkelServo = Math.constrain(Winkel, 2, 178)
     PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, WinkelServo, ServoController)
     basic.pause(20)
-    OLED12864_I2C.radius(
+    OLED12864_I2C.radius_line(
     Mittelpunkt_X,
     Mittelpunkt_Y,
     Strahl,
     Winkel,
     1
     )
-    OLED12864_I2C.radius(
+    OLED12864_I2C.radius_line(
     Mittelpunkt_X,
     Mittelpunkt_Y,
     Strahl,
@@ -32,9 +24,11 @@ function TasteBereichAb () {
     0
     )
     if (EntfernungPixel > 0) {
-        OLED12864_I2C.circle(
-        Math.round(Mittelpunkt_X + EntfernungPixel * Math.cos((360 - Winkel) * 3.14 / Abtastbereich)),
-        Math.round(Mittelpunkt_Y + EntfernungPixel * Math.sin((360 - Winkel) * 3.14 / Abtastbereich)),
+        OLED12864_I2C.radius_circle(
+        Mittelpunkt_X,
+        Mittelpunkt_Y,
+        EntfernungPixel,
+        Winkel,
         2,
         1
         )
@@ -66,27 +60,17 @@ function MesseEntfernung () {
     1
     )
 }
-function ErmitteZufaelligesHindernis () {
-    Hindernis = randint(1, 10)
-    if (Hindernis == 10) {
-        EntfernungPixel = randint(10, 60)
-    } else {
-        EntfernungPixel = 0
-    }
-}
 input.onButtonPressed(Button.B, function () {
     if (EntfernungCMMax > 50) {
         EntfernungCMMax += -10
     }
 })
-let Hindernis = 0
 let EntfernungCM = 0
 let Pulsdauer = 0
 let EntfernungPixel = 0
-let WinkelServo = 0
 let Winkel = 0
+let WinkelServo = 0
 let EntfernungCMMax = 0
-let Abtastbereich = 0
 let Strahl = 0
 let Mittelpunkt_Y = 0
 let Mittelpunkt_X = 0
@@ -105,7 +89,7 @@ Mittelpunkt_X = 64
 Mittelpunkt_Y = 64
 Strahl = 62
 let Radius = Strahl + 2
-Abtastbereich = 180
+let Abtastbereich = 180
 let Abtastungen = 20
 let VonRechtsNachLinks = true
 EntfernungCMMax = 100
