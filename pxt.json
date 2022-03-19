@@ -5,7 +5,7 @@
         "core": "*",
         "radio": "*",
         "OLED12864_I2C": "github:callitgs3/oled12864_i2c#0a760d6d157f4af4c340bf2652ab6d8a1bcf917e",
-        "pxt-pca9685": "github:jdarling/pxt-pca9685#v0.0.5"
+        "Servo": "github:callitgs3/pxt-servo#v1.0.0"
     },
     "files": [
         "main.blocks",
