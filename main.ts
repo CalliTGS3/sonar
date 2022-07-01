@@ -7,8 +7,8 @@ function TasteBereichAb () {
     )
     MesseEntfernung()
     WinkelServo = Math.constrain(Winkel, 2, 178)
-    Servo.Servo(0, Winkel)
-    basic.pause(20)
+    pins.servoWritePin(AnalogPin.C4, Winkel)
+    basic.pause(50)
     OLED12864_I2C.radius_line(
     Mittelpunkt_X,
     Mittelpunkt_Y,
@@ -81,7 +81,7 @@ Mittelpunkt_Y = 64
 Strahl = 62
 let Radius = Strahl + 2
 let Abtastbereich = 180
-let Abtastungen = 20
+let Abtastungen = 10
 let VonRechtsNachLinks = true
 EntfernungCMMax = 100
 while (!(input.buttonIsPressed(Button.A))) {
@@ -96,12 +96,13 @@ basic.forever(function () {
     1
     )
     for (let Index = 0; Index <= Abtastungen - 1; Index++) {
-        if (VonRechtsNachLinks) {
-            Winkel = Index * Math.idiv(Abtastbereich, Abtastungen)
-        } else {
-            Winkel = Abtastbereich - Index * Math.idiv(Abtastbereich, Abtastungen)
-        }
+        Winkel = Index * Math.idiv(Abtastbereich, Abtastungen)
+        OLED12864_I2C.showNumber(
+        22,
+        1,
+        Winkel,
+        1
+        )
         TasteBereichAb()
     }
-    VonRechtsNachLinks = !(VonRechtsNachLinks)
 })

@@ -1,11 +1,10 @@
 {
-    "name": "Sonar",
+    "name": "Explorer",
     "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "OLED12864_I2C": "github:callitgs3/oled12864_i2c#0a760d6d157f4af4c340bf2652ab6d8a1bcf917e",
-        "Servo": "github:callitgs3/pxt-servo#v1.0.0"
+        "OLED12864_I2C": "github:callitgs3/oled12864_i2c#0a760d6d157f4af4c340bf2652ab6d8a1bcf917e"
     },
     "files": [
         "main.blocks",
