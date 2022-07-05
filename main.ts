@@ -40,19 +40,31 @@ input.onButtonPressed(Button.A, function () {
     }
 })
 function MesseEntfernung () {
-    // send pulse
-    pins.digitalWritePin(DigitalPin.P0, 0)
-    control.waitMicros(2)
-    pins.digitalWritePin(DigitalPin.P0, 1)
-    control.waitMicros(10)
-    pins.digitalWritePin(DigitalPin.P0, 0)
-    Pulsdauer = pins.pulseIn(DigitalPin.P1, PulseValue.High)
-    if (Pulsdauer > 0 && Pulsdauer < 200000) {
-        EntfernungCM = Math.trunc(Pulsdauer * 153 / 29 / 2 / 100)
-    } else {
-        EntfernungCM = 0
+    Liste = []
+    for (let index = 0; index < 5; index++) {
+        pins.digitalWritePin(DigitalPin.P0, 0)
+        control.waitMicros(2)
+        pins.digitalWritePin(DigitalPin.P0, 1)
+        control.waitMicros(10)
+        pins.digitalWritePin(DigitalPin.P0, 0)
+        Pulsdauer = pins.pulseIn(DigitalPin.P1, PulseValue.High)
+        if (Pulsdauer > 0 && Pulsdauer < 200000) {
+            EntfernungCM = Math.trunc(Pulsdauer * 153 / 29 / 2 / 100)
+        } else {
+            EntfernungCM = 0
+        }
+        Liste.push(EntfernungCM)
+        basic.pause(20)
     }
+    Liste.sort()
+EntfernungCM = Liste[2]
     EntfernungPixel = Math.ceil(Strahl * EntfernungCM / EntfernungCMMax)
+    OLED12864_I2C.showString(
+    0,
+    0,
+    "     ",
+    1
+    )
     OLED12864_I2C.showNumber(
     0,
     0,
@@ -74,6 +86,7 @@ let EntfernungCMMax = 0
 let Strahl = 0
 let Mittelpunkt_Y = 0
 let Mittelpunkt_X = 0
+let Liste: number[] = []
 OLED12864_I2C.init(60)
 OLED12864_I2C.zoom(false)
 Mittelpunkt_X = 64
