@@ -4,7 +4,7 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "OLED12864_I2C": "github:callitgs3/oled12864_i2c#0a760d6d157f4af4c340bf2652ab6d8a1bcf917e",
+        "OLED12864_I2C": "github:callitgs3/oled12864_i2c#bffab279a7302996f6fdcb9b3e477101234c0603",
         "Servo": "github:callitgs3/pxt-servo#v1.0.0"
     },
     "files": [
@@ -15,6 +15,10 @@
     "testFiles": [
         "test.ts"
     ],
+    "targetVersions": {
+        "target": "4.0.35",
+        "targetId": "calliopemini"
+    },
     "supportedTargets": [
         "calliopemini"
     ],

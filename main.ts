@@ -34,7 +34,7 @@ function TasteBereichAb () {
         )
     }
 }
-input.onButtonPressed(Button.A, function () {
+input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     if (EntfernungCMMax < 400) {
         EntfernungCMMax += 10
     }
@@ -60,7 +60,7 @@ function MesseEntfernung () {
     1
     )
 }
-input.onButtonPressed(Button.B, function () {
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     if (EntfernungCMMax > 50) {
         EntfernungCMMax += -10
     }
